@@ -4,6 +4,6 @@ require './src/board'
 describe '.initialize' do
   it 'returns an empty board' do
     board = Board.new
-    expect(board.board).to eq([[0,0,0],[0,0,0],[0,0,0]])
+    expect(board.grid).to eq([[0,0,0],[0,0,0],[0,0,0]])
   end
 end

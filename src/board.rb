@@ -1,6 +1,6 @@
 class Board
-  attr_accessor :board
+  attr_accessor :grid
   def initialize
-    @board = [[0,0,0],[0,0,0],[0,0,0]]
+    @grid = [[0,0,0],[0,0,0],[0,0,0]]
   end
 end
