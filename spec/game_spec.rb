@@ -21,44 +21,6 @@ describe 'Game' do
     end
   end
 
-  describe '#write_onboard' do
-    it "will write 'x' on the board grid when player1 plays" do
-      @game.write_onboard(@player1,4)
-      #000
-      #0x0
-      #000
-      expect(@board.grid).to eq([[0,0,0],[0,'x',0],[0,0,0]])
-    end
-
-    it "will write 'o' on the board grid when player2 plays" do
-      allow(@board).to receive(:grid).and_return([[0,0,0],[0,'x',0],[0,0,0]])
-      @game.write_onboard(@player2,5)
-      #000
-      #0xo
-      #000
-      expect(@board.grid).to eq([[0,0,0],[0,'x','o'],[0,0,0]])
-    end
-
-    it "raise an error if a player tries to write on a place that was already written at" do
-      allow(@board).to receive(:grid).and_return([[0,0,0],[0,'x',0],[0,0,0]])
-      #000
-      #0x0
-      #000
-      expect do
-        @game.write_onboard(@player2,4)
-      end.to raise_error("Position 4 has been already written at")
-    end
-
-    it "raise an error if a player tries to write on an invalid place" do
-      #000
-      #000
-      #000
-      expect do
-        @game.write_onboard(@player2,9)
-      end.to raise_error("Invalid position! please select from 0 to 8")
-    end
-  end
-
   describe '#check_winner' do
     context 'check for the winner in the horizontal patterns' do
       it "returns 'Player1 wins!' when the top line is full of x" do
@@ -127,6 +89,16 @@ describe 'Game' do
         #xox
         #ox0
         expect(@game.check_winner).to eq('Player2 wins!')
+      end
+    end
+
+    context 'when the grid is not full and there is no winner' do
+      it "returns 'No one wins, keep playing!'" do
+        allow(@board).to receive(:grid).and_return([['x','o','x'],['x','o','o'],['o','x',0]])
+        #xox
+        #xoo
+        #oxx
+        expect(@game.check_winner).to eq('No one wins, keep playing!')
       end
     end
 

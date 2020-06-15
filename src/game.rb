@@ -9,11 +9,11 @@
     @player1 = player1
     @player2 = player2
     @board = board
-    @player_marker = {player1: 'x', player2: 'o'}
+    @player_marker = {'x' => player1 , 'o' => player2}
   end
 
   def write_onboard(player,loc)
     # binding.pry
-    board.grid[loc % 3] [loc / 3] = player_marker[player.to_sym]
+    board.grid[loc % 3] [loc / 3] = player_marker.invert[player]
   end
 end
