@@ -7,12 +7,12 @@ describe 'Board' do
     @board = Board.new
   end
 
-describe '.initialize' do
-  it 'returns an empty board' do
-    expect(@board.grid).to eq([[0,0,0],[0,0,0],[0,0,0]])
-    # expect(@board).to receive(:grid).and_return([[0,0,0],[0,0,0],[0,0,0]])
+  describe '.initialize' do
+    it 'returns an empty board' do
+      expect(@board.grid).to eq([[0,0,0],[0,0,0],[0,0,0]])
+      # expect(@board).to receive(:grid).and_return([[0,0,0],[0,0,0],[0,0,0]])
+    end
   end
-end
 
   describe '#write_onboard' do
     it "will write 'mark' on the board grid" do
@@ -24,7 +24,7 @@ end
     end
 
     it "raise an error if the intended position was already written at" do
-      @board.grid = [[0,0,0],[0,'mark',0],[0,0,0]]
+      @board.write_onboard('mark',4)
       #0   0  0
       #0'mark'0
       #0   0  0
