@@ -5,15 +5,19 @@
    attr_reader :player_marker
 
 
-  def initialize(board: , player1: , player2: )
+  def initialize(board:, player1:, player2: )
     @player1 = player1
     @player2 = player2
     @board = board
-    @player_marker = {'x' => player1 , 'o' => player2}
+    @player_marker = {'x' => player1, 'o' => player2}
   end
 
-  def write_onboard(player,loc)
+  def write_onboard(player, pos)
     # binding.pry
-    board.grid[loc % 3] [loc / 3] = player_marker.invert[player]
+    @board.write_onboard(@player_marker.invert[player], pos)
+  end
+
+  def check_winner
+    
   end
 end

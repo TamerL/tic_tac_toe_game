@@ -17,7 +17,22 @@ describe 'Game' do
       expect(@game.player1).to eq(@player1)
       expect(@game.player2).to eq(@player2)
       expect(@game.board).to eq(@board)
-      expect(@game.player_marker).to eq({:player1=>"x", :player2=>"o"})
+      expect(@game.player_marker).to eq({'x' => @player1, 'o' => @player2})
+    end
+  end
+
+  describe '#write_onboard' do
+    context 'when player1 plays' do
+      it "triggers write_onboard of the board" do
+        expect(@board).to receive(:write_onboard).with('x',4)
+        @game.write_onboard(@player1,4)
+      end
+    end
+    context 'when player2 plays' do
+      it "triggers write_onboard of the board" do
+        expect(@board).to receive(:write_onboard).with('o',4)
+        @game.write_onboard(@player2,4)
+      end
     end
   end
 
