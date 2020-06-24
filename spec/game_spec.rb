@@ -118,12 +118,12 @@ describe 'Game' do
     end
 
     context 'when the grid is full and there is no winner' do
-      it "returns 'The game is draw, No one wins!'" do
+      it "returns 'The game is draw, no one wins!'" do
         allow(@board).to receive(:grid).and_return([['x','o','x'],['x','o','o'],['o','x','x']])
         #xox
         #xoo
         #oxx
-        expect(@game.check_winner).to eq('The game is draw, No one wins!')
+        expect(@game.check_winner).to eq('The game is draw, no one wins!')
       end
     end
 

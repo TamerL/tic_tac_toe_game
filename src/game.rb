@@ -22,12 +22,12 @@
     diags << (0..2).collect {|i| @board.grid[i][i]}
     diags << (0..2).collect {|i| @board.grid.reverse[i][i]}
     array = (@board.grid + diags + @board.grid.transpose).find{ |arr| arr.uniq.length == 1 }
-    if array
+    if array && array.uniq.first != 0
       return "#{@player_marker[array.uniq.first].name} wins!"
     elsif @board.grid.find{ |arr| arr.include?(0)}
       return "No one wins, keep playing!"
     else
-      return "The game is draw, No one wins!"
+      return "The game is draw, no one wins!"
     end
   end
 end

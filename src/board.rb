@@ -9,7 +9,7 @@ class Board
 
   def write_onboard(str,pos)
     raise "Invalid position! please select from 0 to #{SIZE**2 - 1}" if pos >= SIZE**2
-    raise "Position #{pos} has been already written at" if @grid[pos % SIZE] [pos / SIZE] != 0
-    @grid[pos % SIZE] [pos / SIZE] = str
+    raise "Position #{pos} has been already written at" if ![0,nil].include?(@grid[pos / SIZE] [pos % SIZE])
+    @grid[pos / SIZE] [pos % SIZE] = str
   end
 end

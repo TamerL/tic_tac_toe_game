@@ -1,5 +1,7 @@
 require 'rspec/autorun'
 require './src/board'
+require 'pry'
+
 
 
 describe 'Board' do
