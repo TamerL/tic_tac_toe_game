@@ -5,8 +5,8 @@ require 'pry'
 
 describe 'Game' do
   before do
-    @player1 = double("Player")
-    @player2 = double("Player")
+    @player1 = double("Player", name: "Player1")
+    @player2 = double("Player", name: "Player2")
     @board = double("Board", grid: [[0,0,0],[0,0,0],[0,0,0]])
     @game = Game.new(board: @board, player1: @player1, player2: @player2)
   end

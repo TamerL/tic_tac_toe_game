@@ -18,6 +18,16 @@
   end
 
   def check_winner
-    
+    diags = []
+    diags << (0..2).collect {|i| @board.grid[i][i]}
+    diags << (0..2).collect {|i| @board.grid.reverse[i][i]}
+    array = (@board.grid + diags + @board.grid.transpose).find{ |arr| arr.uniq.length == 1 }
+    if array
+      return "#{@player_marker[array.uniq.first].name} wins!"
+    elsif @board.grid.find{ |arr| arr.include?(0)}
+      return "No one wins, keep playing!"
+    else
+      return "The game is draw, No one wins!"
+    end
   end
 end
