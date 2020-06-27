@@ -14,7 +14,7 @@ class Board
   # end
 
   def initialize
-    @grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    @grid = Array.new(SIZE){Array.new(SIZE).map{|e|e=0}}
   end
 
   def write_onboard(str, pos)
