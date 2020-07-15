@@ -2,6 +2,7 @@
 
 require 'rspec/autorun'
 require './src/game'
+require './src/board'
 require 'pry'
 
 describe 'Game' do
@@ -32,6 +33,13 @@ describe 'Game' do
       it 'triggers write_onboard of the board' do
         expect(@board).to receive(:write_onboard).with('o', 4)
         @game.write_onboard(@player2, 4)
+      end
+    end
+    context "When the player's input is not an Integer" do
+      it "raises an error 'Only numbers in the mentioned range are allowed'" do
+	expect do
+          @game.write_onboard(@player2, 'invalid_input')
+	end.to raise_error('Only numbers in the mentioned range are allowed')
       end
     end
   end

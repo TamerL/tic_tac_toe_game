@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# require './board'
 
 class Game
   attr_accessor :board
@@ -15,20 +16,24 @@ class Game
   end
 
   def write_onboard(player, pos)
+    raise 'Only numbers in the mentioned range are allowed' if !pos.is_a? Integer
     board.write_onboard(@player_marker.invert[player], pos)
     # binding.pry
-    @player_turn = @player_marker.reject { |_k, v| v == player }.values.first
+    @player_turn = @player_marker.reject { |k, v| v == player }.values.first
   end
 
   def get_winner
     diags = []
-    diags << (0..2).collect { |i| board.grid[i][i] }
+    diags << (0...Board::SIZE).collect { |i| board.grid[i][i] }
     # checking in the diagonal \ for a winner
 
-    diags << (0..2).collect { |i| board.grid.reverse[i][i] }
+    diags << (0...Board::SIZE).collect { |i| board.grid.reverse[i][i] }
     # checking in the diagonal / for a winner
 
+    # array = (board.grid + diags + board.grid.transpose)
+    # binding.pry
     array = (board.grid + diags + board.grid.transpose).find { |arr| arr.uniq.length == 1 }
+    # array = (board.grid + diags + board.grid.transpose).all? { |arr| arr.uniq.length == 1 && arr.uniq.first != 0}
     # checking for a winner in the columns and lines, #{array} will have
     # a sequence of 3 identical elements
 
